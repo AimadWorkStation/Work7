@@ -71,9 +71,44 @@ function deletUser(id){
 		myAjax('POST','deletUser.php',info);
 		
 	}else{
-		console.log("sorry");
+		console.log("u'r retreating");
 	}
 	
+
+	return false;
+}
+
+
+
+
+function clickMe(a){
+	console.log(a);
+	$('.trplace'+a).fadeIn(500);
+	$('tr[class^="trplace"]').fadeOut();
+	$('.trplace'+a).fadeIn();
+	return false;
+}
+
+
+function updateUser(id){
+	var name = document.getElementById('name'+id);
+	var lname = document.getElementById('lname'+id);
+	var phone = document.getElementById('phone'+id);
+	var job = document.getElementById('job'+id);
+
+	var info = "name="+ name.value+
+				"&lname="+ lname.value+
+				"&phone="+phone.value +
+				"&job="+ job.value +
+				"&id="+ id;
+				
+	myAjax('POST','updateUser.php',info);
+
+	name.value = '';
+	lname.value = '';
+	phone.value = '';
+	job.value = '';
+	$('tr[class^="trplace"]').fadeOut();
 
 	return false;
 }
